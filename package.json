@@ -1,0 +1,10 @@
+{
+  "name": "dom4me-plus",
+  "version": "1.0.0",
+  "description": "Unofficial mobile app for sending meters data to dom4me service.",
+  "scripts": {
+    "run": "cordova run browser"
+  },
+  "author": "Anton Prilepsky",
+  "license": "MIT"
+}
