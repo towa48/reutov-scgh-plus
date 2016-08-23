@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ru.dotnetninja.dom4meplus" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>dom4me-plus</name>
+<widget id="ru.dotnetninja.reutovscghplus" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>reutov-scgh-plus</name>
     <description>
-        Unofficial mobile app for sending meters data to dom4me service.
+        Unofficial mobile app for sending meters data to Reutov SCGH service.
     </description>
     <author href="https://github.com/towa48/">
         Anton Prilepskiy
