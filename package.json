@@ -10,10 +10,13 @@
   "devDependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.7",
     "del": "^2.2.2",
     "global": "^4.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
     "html-webpack-plugin": "^2.22.0",
     "raw-loader": "^0.5.1",
     "webpack-stream": "^3.2.0"

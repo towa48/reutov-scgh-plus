@@ -3,13 +3,17 @@ const del = require('del');
 const path = require('path');
 const webpack = require('webpack-stream');
 const concat = require('gulp-concat');
+const less = require('gulp-less');
+const sourcemaps = require('gulp-sourcemaps');
 const webpackConfig = require('./webpack.config.js');
 
 const paths = {
   'jsApp': 'www/js/bootstrap.js',
   'jsBundleName': 'app-bundle.js',
   'jsBundleDir': 'www/js/',
-  'templates': 'www/app-templates.html'
+  'templates': 'www/app-templates.html',
+  'lessBundle': 'www/styles/bundle.less',
+  'lessBundleDir': 'www/styles'
 }
 
 gulp.task('clear:templates', () => {
@@ -28,7 +32,15 @@ gulp.task('build:js', ['clear:js'], () => {
     .pipe(gulp.dest(paths.jsBundleDir));
 });
 
-gulp.task('build', ['build:js', 'clear:templates'], (next) => {
+gulp.task('build:styles', () => {
+  return gulp.src(paths.lessBundle)
+    .pipe(sourcemaps.init())
+    .pipe(less())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.lessBundleDir));
+});
+
+gulp.task('build', ['build:js', 'build:styles', 'clear:templates'], (next) => {
   next();
 });
 

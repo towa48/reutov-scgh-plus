@@ -12,7 +12,7 @@ var appModule = angular.module('app', [
   components.name
 ])
 .config(['$locationProvider', function ($locationProvider) {
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(false);
 }])
 .directive('app', appComponent);
 
