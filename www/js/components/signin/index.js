@@ -12,7 +12,10 @@ var signinModule = angular.module('signin', [
   $stateProvider
     .state('signin', {
       url: '/signin',
-      template: '<signin></signin>'
+      template: '<signin></signin>',
+      onEnter: ['$state', '$rootScope', function($state, $rootScope) {
+          $rootScope.layout = 'signin';
+      }]
     });
 }])
 .component('signin', signinComponent);

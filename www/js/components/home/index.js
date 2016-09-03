@@ -13,9 +13,9 @@ var homeModule = angular.module('home', [
     .state('home', {
       url: '/',
       template: '<home></home>',
-      onEnter: function($state) {
+      onEnter: ['$state', function($state) {
           $state.transitionTo('signin'); // todo: add logic with tokens-storage
-      }
+      }]
     });
 }])
 .component('home', homeComponent);

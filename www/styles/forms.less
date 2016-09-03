@@ -1,3 +1,9 @@
+.form-control:focus {
+  border-color: #ccc;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
 .text-input-underbar {
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
@@ -7,12 +13,19 @@
   letter-spacing: 0;
   color: #1f1f21;
   padding: 4px 8px 0 8px;
-  font-size: 15px;
+  font-size: 17px;
   height: 31px;
-  font-weight: 400;
   border: none;
   background-color: transparent;
   border-bottom: 1px solid #ddd;
   -webkit-border-radius: 0px;
           border-radius: 0px;
+}
+.text-input-white {
+  color: #fefefe;
+
+  &::-webkit-input-placeholder { color:#eeeeee; }
+  &::-moz-placeholder { color:#eeeeee; }
+  &:-moz-placeholder { color:#eeeeee; }
+  &:-ms-input-placeholder { color:#eeeeee; }
 }
