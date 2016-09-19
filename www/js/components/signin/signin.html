@@ -3,9 +3,9 @@
     <h1>{{vm.i18n.ReutovScghTitle}}</h1>
   </div>
   <div class="signin-form">
-    <input type="text" class="text-input-underbar text-input-white" placeholder="{{vm.i18n.LoginPlaceholder}}">
-    <input type="password" class="text-input-underbar text-input-white" placeholder="{{vm.i18n.PasswordPlaceholder}}">
+    <input type="text" class="text-input-underbar text-input-white" placeholder="{{vm.i18n.LoginPlaceholder}}" ng-model="vm.login">
+    <input type="password" class="text-input-underbar text-input-white" placeholder="{{vm.i18n.PasswordPlaceholder}}" ng-model="vm.password">
 
-    <button class="btn btn-white btn-signin">{{vm.i18n.LoginButtonText}}</button>
+    <button class="btn btn-white btn-signin" ng-click="vm.signin()">{{vm.i18n.LoginButtonText}}</button>
   </div>
 </main>

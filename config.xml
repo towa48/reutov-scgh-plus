@@ -21,6 +21,7 @@
     <!--<preference name="AutoHideSplashScreen" value="false" />-->
     <!-- workaround: bootstrap.js -->
     <preference name="SplashScreenDelay" value="1000000" />
+    <preference name="OverrideUserAgent" value="ReutovScghPlus/1.0.0" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>

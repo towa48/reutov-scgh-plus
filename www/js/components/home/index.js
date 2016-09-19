@@ -13,8 +13,11 @@ var homeModule = angular.module('home', [
     .state('home', {
       url: '/',
       template: '<home></home>',
-      onEnter: ['$state', function($state) {
-          $state.transitionTo('signin'); // todo: add logic with tokens-storage
+      onEnter: ['$state', 'tokensStorage', function($state, tokensStorage) {
+        var tokens = tokensStorage.get();
+        if (tokens === null || new Date(tokens.expiresDateUtc) <= new Date()) {
+          $state.transitionTo('signin');
+        }
       }]
     });
 }])

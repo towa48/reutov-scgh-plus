@@ -7,7 +7,7 @@ var signinComponent = {
   restrict: 'E',
   scope: {},
   template: template,
-  controller: controller,
+  controller: ['$state', 'tokensStorage', 'tokensProvider', controller],
   controllerAs: 'vm',
   bindToController: true
 };

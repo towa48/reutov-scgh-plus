@@ -9,6 +9,7 @@
   "license": "MIT",
   "devDependencies": {
     "angular": "^1.5.8",
+    "angular-resource": "^1.5.8",
     "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.7",
     "del": "^2.2.2",

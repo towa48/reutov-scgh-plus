@@ -7,7 +7,7 @@ var homeComponent = {
   restrict: 'E',
   scope: {},
   template: template,
-  controller: controller,
+  controller: ['tokensStorage', controller],
   controllerAs: 'vm',
   bindToController: true
 };
