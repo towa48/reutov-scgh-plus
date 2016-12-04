@@ -1,3 +1,8 @@
+.app {
+  &_loading {
+    display: none;
+  }
+}
 main {
   position: absolute;
   top: 0;
@@ -27,9 +32,19 @@ main {
     right: 3px;
     bottom: 2px;
     width: 3px;
+
+    .scroll-bar-indicator {
+      width: 100%;
+    }
   }
 
   &-indicator {
-
+    position: absolute;
+    border-radius: 4px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    -webkit-transition: opacity 0.3s linear;
+            transition: opacity 0.3s linear;
   }
 }

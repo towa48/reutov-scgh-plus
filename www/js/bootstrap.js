@@ -23,7 +23,9 @@ var readyPromise = new Promise(function(resolve, reject) {
       i18n.setLocale("en");
     }
 
-    angular.bootstrap(document, [app.name]);
+    var $injector = angular.bootstrap(document, [app.name]);
+    $injector.get('eventBus').trigger('app-loaded');
+
     resolve();
   }
 

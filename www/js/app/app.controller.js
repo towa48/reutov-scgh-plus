@@ -5,7 +5,6 @@ var AppController = function($scope, eventBus) {
 
   var self = this;
   eventBus.on('app-loaded', function() {
-    console.log('loaded');
     self.loaded = true;
     $scope.$digest();
   });
