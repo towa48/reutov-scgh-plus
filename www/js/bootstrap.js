@@ -15,6 +15,7 @@ var splashPomise = new Promise(function(resolve, reject) {
   }, SPLASHSCREEN_DELAY);
 });
 
+var $injector = null;
 var readyPromise = new Promise(function(resolve, reject) {
   var startup = function (language) {
     if (language) {
@@ -23,8 +24,7 @@ var readyPromise = new Promise(function(resolve, reject) {
       i18n.setLocale("en");
     }
 
-    var $injector = angular.bootstrap(document, [app.name]);
-    $injector.get('eventBus').trigger('app-loaded');
+    $injector = angular.bootstrap(document, [app.name]);
 
     resolve();
   }
@@ -36,8 +36,9 @@ var readyPromise = new Promise(function(resolve, reject) {
   }
 });
 
-function hideSplash() {
+function startApp() {
   window.navigator.splashscreen.hide();
+  $injector.get('eventBus').trigger('app-loaded');
 }
 
-Promise.all([splashPomise, readyPromise]).then(hideSplash);
+Promise.all([splashPomise, readyPromise]).then(startApp);
