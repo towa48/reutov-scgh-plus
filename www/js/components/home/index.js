@@ -13,7 +13,8 @@ var homeModule = angular.module('home', [
     .state('home', {
       url: '/',
       template: '<home></home>',
-      onEnter: ['$state', 'tokensStorage', function($state, tokensStorage) {
+      onEnter: ['$state', '$rootScope', 'tokensStorage', function($state, $rootScope, tokensStorage) {
+        $rootScope.layout = null;
         var tokens = tokensStorage.get();
         if (tokens === null || new Date(tokens.expiresDateUtc) <= new Date()) {
           $state.transitionTo('signin');

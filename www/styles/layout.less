@@ -1,0 +1,35 @@
+main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  margin-top: -1px;
+  padding-top: 1px;
+  margin-bottom: -1px;
+  width: auto;
+  height: auto;
+}
+.navbar-fixed-top + main {
+  top: 44px;
+}
+.scrollable {
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+.scroll-bar {
+  position: absolute;
+  z-index: 9999;
+
+  &-vertical {
+    top: 2px;
+    right: 3px;
+    bottom: 2px;
+    width: 3px;
+  }
+
+  &-indicator {
+
+  }
+}

@@ -5,6 +5,7 @@ plugins/
 # npm and bower
 node_modules/
 www/lib/
+npm-debug.log
 
 # config and bundles
 www/js/config.js

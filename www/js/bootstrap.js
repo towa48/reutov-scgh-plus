@@ -9,35 +9,33 @@ var i18n = require('./i18n');
 
 var app = require('./app');
 
-var splashExpired = false;
-var splashTimerId = setTimeout(function() {
-  splashExpired = true;
-  hideSplash();
-}, SPLASHSCREEN_DELAY);
+var splashPomise = new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    resolve();
+  }, SPLASHSCREEN_DELAY);
+});
 
-// bind to deviceready event
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-  window.navigator.globalization.getPreferredLanguage(startup,startup);
-}
+var readyPromise = new Promise(function(resolve, reject) {
+  var startup = function (language) {
+    if (language) {
+      i18n.setLocale(language.value);
+    } else {
+      i18n.setLocale("en");
+    }
+
+    angular.bootstrap(document, [app.name]);
+    resolve();
+  }
+
+  // bind to deviceready event
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+    window.navigator.globalization.getPreferredLanguage(startup,startup);
+  }
+});
 
 function hideSplash() {
   window.navigator.splashscreen.hide();
 }
 
-function startup(language) {
-  if (language) {
-    i18n.setLocale(language.value);
-  } else {
-    i18n.setLocale("en");
-  }
-
-  angular.bootstrap(document, [app.name]);
-
-  if (!splashExpired) {
-    return;
-  }
-
-  clearTimeout(splashTimerId);
-  hideSplash();
-}
+Promise.all([splashPomise, readyPromise]).then(hideSplash);

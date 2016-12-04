@@ -7,6 +7,11 @@
 ## Сборка и запуск
 
 ```shell
+> sudo npm install -g gulp cordova
+> npm install
+```
+
+```shell
 > gulp build
-> cordova run browser
+> npm start
 ```
