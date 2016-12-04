@@ -15,3 +15,7 @@
 > gulp build
 > npm start
 ```
+
+## Лицензия
+
+MIT
