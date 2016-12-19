@@ -7,6 +7,12 @@ var document = require('global/document');
 var angular = require('angular');
 var i18n = require('./i18n');
 
+window.requestAnimationFrame =
+  window.requestAnimationFrame
+  || window.mozRequestAnimationFrame
+  || window.webkitRequestAnimationFrame
+  || window.msRequestAnimationFrame;
+
 var app = require('./app');
 
 var splashPomise = new Promise(function(resolve, reject) {
