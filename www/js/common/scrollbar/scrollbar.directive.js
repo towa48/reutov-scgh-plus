@@ -9,6 +9,16 @@ var Modes = {
   horizontal: 'horizontal'
 }
 
+/*
+ * Returns touch/mousemove point
+ */
+function getTouchPoint(e) {
+  return {
+    x: e.pageX || e.touches[0].pageX || e.changedTouches[0].pageX,
+    y: e.pageY || e.touches[0].pageY || e.changedTouches[0].pageY
+  }
+}
+
 var ScrollbarPresenter = function($scope, $el, attrs) {
   $scope.Modes = Modes;
 
@@ -44,6 +54,7 @@ var ScrollbarPresenter = function($scope, $el, attrs) {
 
     this._initResize();
     this._initWheel();
+    this._initTouch();
 
     $scope.$on('$destroy', this.destroy.bind(this));
   }
@@ -59,6 +70,74 @@ var ScrollbarPresenter = function($scope, $el, attrs) {
     });
 
     this._resize();
+  }
+
+  this._initTouch = function() {
+    var onTouchStart = this._onTouchStart.bind(this);
+    var onTouchMove = this._onTouchMove.bind(this);
+    var onTouchEnd = this._onTouchEnd.bind(this);
+
+    this.$mainEl.on('touchstart mousedown', onTouchStart);
+    this.$mainEl.on('touchmove mousemove', onTouchMove);
+    this.$mainEl.on('touchend touchcancel mouseup mouseleave', onTouchEnd);
+
+    var self = this;
+    this.on('destroy', function() {
+      self.$mainEl.off('touchstart mousedown', onTouchStart);
+      this.$mainEl.off('touchmove mousemove', onTouchMove);
+      this.$mainEl.off('touchcancel touchend mouseup mouseleave', onTouchEnd);
+    });
+  }
+
+  this._onTouchStart = function(e) {
+    //e.preventDefault();
+
+    if (this.maxScrollY === 0 && this.maxScrollX === 0)
+      return;
+
+    var touchPoint = getTouchPoint(e);
+
+    this.$touchStart = true;
+    this.$touchPrevPoint = touchPoint;
+  }
+
+  this._onTouchMove = function(e) {
+    if (!this.$touchStart)
+      return;
+
+    e.preventDefault();
+    var touchDeltaX, touchDeltaY, newX, newY, self = this;
+    var touchPoint = getTouchPoint(e);
+
+    touchDeltaX = touchPoint.x - this.$touchPrevPoint.x;
+    touchDeltaY = touchPoint.y - this.$touchPrevPoint.y;
+
+    newX = this.offsetX + Math.round(this.hasHorizontalScroll ? touchDeltaX : 0);
+    newY = this.offsetY + Math.round(this.hasVerticalScroll ? touchDeltaY : 0);
+
+    if (newX > 0) {
+      newX = 0;
+    } else if (newX < this.maxScrollX) {
+      newX = this.maxScrollX;
+    }
+
+    if (newY > 0) {
+      newY = 0;
+    } else if (newY < this.maxScrollY) {
+      newY = this.maxScrollY;
+    }
+
+    this.$touchPrevPoint = touchPoint;
+    this.scrollTo(newX, newY);
+  }
+
+  this._onTouchEnd = function(e) {
+    if (!this.$touchStart)
+      return;
+
+    //e.preventDefault();
+    this.$touchStart = false;
+    this.$touchPrevPoint = null;
   }
 
   this._initWheel = function() {
